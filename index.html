@@ -52,14 +52,15 @@
         
         /* Estilos para el Parallax (simple) */
         .parallax-bg {
-             /* Placeholder para fondo parallax */
+            /* ¡Agregué una imagen de portada tuya aquí! Cámbiala por la que prefieras */
+            background-image: url('./img/electrica/electrico-01.jpg'); /* Asumiendo que renombraste a electrico-01.jpg */
             background-attachment: fixed;
             background-position: center;
-            background-repeat: no-repeat;
             background-size: cover;
         }
         .dark .parallax-bg {
-             /* Placeholder oscuro */
+            /* Puedes poner una versión más oscura si quieres */
+            background-image: url('./img/electrica/electrico-01.jpg');
         }
         
         /* Ocultar scrollbars en la galería */
@@ -73,6 +74,53 @@
         /* Evitar comportamiento problemático de background-attachment: fixed en móviles */
         @media (max-width: 768px) {
             .parallax-bg { background-attachment: scroll; }
+        }
+
+        /* Estilos para los botones del modal */
+        .modal-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #111827;
+            border-radius: 9999px;
+            width: 3rem; /* 48px */
+            height: 3rem; /* 48px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; /* 24px */
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            z-index: 150;
+        }
+        .modal-nav-button:hover {
+            background-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .dark .modal-nav-button {
+            background-color: rgba(31, 41, 55, 0.8);
+            color: white;
+        }
+        .dark .modal-nav-button:hover {
+            background-color: #1F2937;
+        }
+        #modal-prev { left: 1rem; /* 16px */ }
+        #modal-next { right: 1rem; /* 16px */ }
+
+        #modal-counter {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            z-index: 150;
         }
     </style>
     
@@ -113,11 +161,10 @@
     <!-- ===== Header / Navegación ===== -->
     <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo -->
+            <!-- Logo (Ruta actualizada) -->
             <a href="#" class="flex items-center space-x-2">
-                <!-- Usamos el logo subido. NOTA: ¡Un PNG transparente sería mejor! -->
-                <img src="https://i.imgur.com/8xL5TFK.jpg" alt="Logo Servicios Integrales RL" class="h-10 w-10 rounded-full object-cover">
-                <span class="font-bold text-xl text-gray-900 dark:text-white"> <span class="text-brand-dark dark:text-brand-light">RL</span></span>
+                <img src="./img/logo_blue.jpeg" alt="Logo Servicios Integrales RL" class="h-10 w-10 rounded-full object-cover">
+                <!-- Quité el texto que habías quitado -->
             </a>
             
             <!-- Links de Navegación (Móvil Oculto) -->
@@ -135,13 +182,13 @@
                     <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.7.7M4.04 19.96l-.7.7M21 12h-1M4 12H3m15.66 8.66l-.7-.7M4.04 4.04l-.7-.7M12 19a7 7 0 100-14 7 7 0 000 14z"></path></svg>
                     <svg id="theme-icon-moon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
-                 <!-- Menú Móvil (Hamburguesa) - Lógica no implementada para brevedad, se muestra en desktop -->
+                 <!-- Menú Móvil (Hamburguesa) -->
                 <button id="mobile-menu-button" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <!-- Menú Móvil (Contenido) - Se mostraría al hacer clic en el botón -->
+        <!-- Menú Móvil (Contenido) -->
         <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
             <a href="#servicios" class="block text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT">Servicios</a>
             <a href="#quienes-somos" class="block text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT">Quiénes Somos</a>
@@ -278,7 +325,8 @@
                 </div>
                 <!-- Columna de Imagen -->
                 <div class="md:w-1/2 animate-fade-in" style="animation-delay: 200ms;">
-                    <img src="https://placehold.co/600x500/1e3a8a/ffffff?text=Equipo+Profesional" alt="Equipo de Servicios Integrales RL trabajando" class="rounded-xl shadow-2xl w-full h-auto object-cover">
+                    <!-- Puedes cambiar esta imagen por una de 'construccion' o 'mantenimiento' -->
+                    <img src="img/electrica/electrico (6).jpeg" alt="Equipo de Servicios Integrales RL trabajando" class="rounded-xl shadow-2xl w-full h-auto object-cover aspect-video">
                 </div>
             </div>
         </div>
@@ -294,21 +342,10 @@
                 </p>
             </div>
             
-            <!-- Aquí van las 5 categorías -->
-            <!-- 1. Eléctrico -->
-            <div class="mb-12 animate-fade-in">
-                <!-- <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">1. Eléctrico</h3> -->
-                <div class="flex overflow-x-auto gap-6 gallery-scrollbar-hide pb-4">
-                    <!-- REEMPLAZA ESTAS IMÁGENES -->
-                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+1" alt="Proyecto Eléctrico 1" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+2" alt="Proyecto Eléctrico 2" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+3" alt="Proyecto Eléctrico 3" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+3" alt="Proyecto Eléctrico 3" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+3" alt="Proyecto Eléctrico 3" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                </div>
+            <!-- Contenedor de la Galería - Se llenará con JavaScript -->
+            <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Las tarjetas de categoría se insertarán aquí dinámicamente -->
             </div>
-
-            
 
         </div>
     </section>
@@ -344,11 +381,12 @@
                     <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Cuéntanos tu proyecto</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-6">Recibe una cotización sin costo.</p>
                     
-                    <form action="#" method="POST" class="space-y-6">
+                    <!-- RECOMENDACIÓN: Usa un servicio como Formspree.io para que el form funcione en un sitio estático -->
+                    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6"> <!-- ¡Configura esto! -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Tu nombre completo">
+                                <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Tu nombre completo" required>
                             </div>
                             <div>
                                 <label for="telefono" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Teléfono</label>
@@ -357,11 +395,11 @@
                         </div>
                         <div>
                             <label for="correo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Correo</label>
-                            <input type="email" id="correo" name="correo" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="tu@correo.com">
+                            <input type="email" id="correo" name="correo" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="tu@correo.com" required>
                         </div>
                         <div>
                             <label for="mensaje" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" rows="5" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Danos más detalles de tu proyecto..."></textarea>
+                            <textarea id="mensaje" name="mensaje" rows="5" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Danos más detalles de tu proyecto..." required></textarea>
                         </div>
                         <div>
                             <button type="submit" class="w-full bg-brand-DEFAULT hover:bg-brand-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
@@ -390,7 +428,7 @@
                         <div class="flex items-start gap-4">
                             <!-- Icono -->
                             <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-100 text-green-600 dark:text-green-400 rounded-lg">
-                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.38.41.66v1.38c0 .28-.16.53-.41.66l-3.2 1.68c-.09.05-.18.07-.28.07c-.1 0-.19-.02-.28-.07l-3.2-1.68c-.25-.13-.41-.38-.41-.66v-1.38c0-.28.16-.53.41-.66l3.2-1.68c.18-.1.4-.1.58 0l3.19 1.68zm-3.2 2.8c.1 0 .19-.02.28-.07l1.42-.75l-1.7-1.02l-1.7 1.02l1.42.75c.09.05.18.07.28.07zM12 2C6.48 2 2 6.48 2 12c0 1.67.42 3.24 1.16 4.6l-1.03 3.55c-.14.48.3.92.78.78l3.55-1.03A9.92 9.92 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.53 0-2.96-.38-4.2-1.05c-.18-.1-.38-.13-.57-.08l-2.61.76l.76-2.61c.05-.19.02-.39-.08-.57A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8z"></svg>
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.38.41.66v1.38c0 .28-.16.53-.41.66l-3.2 1.68c-.09.05-.18.07-.28.07c-.1 0-.19-.02-.28-.07l-3.2-1.68c-.25-.13-.41-.38-.41-.66v-1.38c0-.28.16-.53.41-.66l3.2-1.68c.18-.1.4-.1.58 0l3.19 1.68zm-3.2 2.8c.1 0 .19-.02.28-.07l1.42-.75l-1.7-1.02l-1.7 1.02l1.42.75c.09.05.18.07.28.07zM12 2C6.48 2 2 6.48 2 12c0 1.67.42 3.24 1.16 4.6l-1.03 3.55c-.14.48.3.92.78.78l3.55-1.03A9.92 9.92 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.53 0-2.96-.38-4.2-1.05c-.18-.1-.38-.13-.57-.08l-2.61.76l.76-2.61c.05-.19.02-.39-.08-.57A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8z"></path></svg>
                             </div>
                             <div>
                                 <span class="block text-sm text-gray-500 dark:text-gray-400">WhatsApp</span>
@@ -405,8 +443,9 @@
                             </div>
                             <div>
                                 <span class="block text-sm text-gray-500 dark:text-gray-400">Correo</span>
-                                <a href="mailto:contacto@serviciosintegralesrl.com" class="text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">contacto</a>
-                                <a href="mailto:proyectos@serviciosintegralesrl.com" class="block text-sm text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">proyectos</a>
+                                <!-- Corregí esto, tus enlaces mailto estaban rotos -->
+                                <a href="mailto:contacto@serviciosintegralesrl.com" class="text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">contacto@serviciosintegralesrl.com</a>
+                                <a href="mailto:proyectos@serviciosintegralesrl.com" class="block text-sm text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">proyectos@serviciosintegralesrl.com</a>
                             </div>
                         </div>
                         
@@ -430,7 +469,7 @@
     <!-- ===== Footer ===== -->
     <footer class="bg-gray-900 dark:bg-black text-gray-300 py-12">
         <div class="container mx-auto px-6 text-center">
-            <img src="https://i.imgur.com/8xL5TFK.jpg" alt="Logo Servicios Integrales RL" class="h-16 w-16 rounded-full object-cover mx-auto mb-4">
+            <img src="./img/logo_blue.jpeg" alt="Logo Servicios Integrales RL" class="h-16 w-16 rounded-full object-cover mx-auto mb-4">
             <p class="text-2xl font-bold text-white mb-4">Servicios Integrales RL</p>
             <div class="flex justify-center space-x-6 mb-6">
                 <a href="#servicios" class="hover:text-brand-light transition-colors">Servicios</a>
@@ -449,16 +488,130 @@
         <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.38.41.66v1.38c0 .28-.16.53-.41.66l-3.2 1.68c-.09.05-.18.07-.28.07c-.1 0-.19-.02-.28-.07l-3.2-1.68c-.25-.13-.41-.38-.41-.66v-1.38c0-.28.16-.53.41-.66l3.2-1.68c.18-.1.4-.1.58 0l3.19 1.68zm-3.2 2.8c.1 0 .19-.02.28-.07l1.42-.75l-1.7-1.02l-1.7 1.02l1.42.75c.09.05.18.07.28.07zM12 2C6.48 2 2 6.48 2 12c0 1.67.42 3.24 1.16 4.6l-1.03 3.55c-.14.48.3.92.78.78l3.55-1.03A9.92 9.92 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.53 0-2.96-.38-4.2-1.05c-.18-.1-.38-.13-.57-.08l-2.61.76l.76-2.61c.05-.19.02-.39-.08-.57A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8z"></path></svg>
     </a>
 
-    <!-- ===== Modal para Galería (Lightbox) ===== -->
+    <!-- ===== Modal para Galería (Lightbox) - ¡NUEVA VERSIÓN! ===== -->
     <div id="gallery-modal" class="fixed inset-0 bg-black bg-opacity-80 z-[100] flex items-center justify-center p-4 hidden transition-opacity duration-300">
-        <div class="relative max-w-3xl max-h-[90vh]">
-            <img id="modal-img" src="" alt="Proyecto ampliado" class="w-auto h-auto max-w-full max-h-[90vh] rounded-lg shadow-2xl">
-            <button id="modal-close" class="absolute -top-4 -right-4 md:top-2 md:right-2 w-10 h-10 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full flex items-center justify-center text-2xl font-bold focus:outline-none">&times;</button>
+        <!-- Contenedor principal de la imagen y navegación -->
+        <div class="relative w-full max-w-4xl max-h-[90vh]">
+            
+            <!-- Imagen Principal -->
+            <img id="modal-img" src="" alt="Proyecto ampliado" class="w-full h-auto max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+            
+            <!-- Botón de Cerrar -->
+            <button id="modal-close" class="absolute -top-4 -right-4 md:top-2 md:right-2 w-10 h-10 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full flex items-center justify-center text-2xl font-bold focus:outline-none z-[160]">&times;</button>
+            
+            <!-- Navegación -->
+            <button id="modal-prev" class="modal-nav-button" aria-label="Anterior">&lt;</button>
+            <button id="modal-next" class="modal-nav-button" aria-label="Siguiente">&gt;</button>
+
+            <!-- Contador -->
+            <div id="modal-counter" class="text-white"></div>
         </div>
     </div>
 
     <!-- ===== Scripts ===== -->
     <script>
+        // ===== ¡AQUÍ ESTÁ LA CONFIGURACIÓN DE TU GALERÍA! =====
+        // Instrucciones:
+        // 1. Renombra tus archivos (ej. electrico-01.jpg, electrico-02.jpg).
+        // 2. Agrega las rutas de tus imágenes en los arrays de 'images'.
+        // 3. 'cover' es la imagen que se mostrará en la tarjeta principal. ¡Elige la mejor!
+
+        const projectGalleries = {
+            "electrico": {
+                title: "Proyectos Eléctricos",
+                cover: "./img/electrica/electrico1.jpeg", // ¡Elige tu mejor foto de portada!
+                images: [
+                    "./img/electrica/electrico1.jpeg",
+                    "/img/electrica/electrico (2).jpeg",
+                    "img/electrica/electrico (3).jpeg",
+                    "img/electrica/electrico (4).jpeg",
+                    "img/electrica/electrico (5).jpeg",
+                    "img/electrica/electrico (6).jpeg",
+                    "img/electrica/electrico (7).jpeg",
+                    "img/electrica/electrico (8).jpeg",
+                    "img/electrica/electrico (9).jpeg",
+                    "img/electrica/electrico (10).jpeg",
+                    "img/electrica/electrico (11).jpeg",
+                    "img/electrica/electrico (12).jpeg",
+                    "img/electrica/electrico (13).jpeg",
+                    "img/electrica/electrico (14).jpeg",
+                    "img/electrica/electrico (15).jpeg",
+                    "img/electrica/electrico (16).jpeg",
+                    "img/electrica/electrico (18).jpeg",
+                    "img/electrica/electrico (19).jpeg",
+                    "img/electrica/electrico (20).jpeg",
+                    "img/electrica/electrico (21).jpeg",
+                    "img/electrica/electrico (22).jpeg",
+                    "img/electrica/electrico (23).jpeg",
+                    "img/electrica/electrico (24).jpeg",
+                    "img/electrica/electrico (25).jpeg",
+                    "img/electrica/electrico (26).jpeg",
+                    "img/electrica/electrico (27).jpeg",
+                    "img/electrica/electrico (28).jpeg",
+                    "img/electrica/electrico (29).jpeg",
+                    "img/electrica/electrico (30).jpeg",
+                    "img/electrica/electrico (31).jpeg",
+                    "img/electrica/electrico (32).jpeg",
+                    "img/electrica/electrico (33).jpeg",
+                    "img/electrica/electrico (34).jpeg",
+                    "img/electrica/electrico (35).jpeg",
+                    "img/electrica/electrico (36).jpeg",
+                    "img/electrica/electrico (37).jpeg",
+                    "img/electrica/electrico (38).jpeg",
+                ]
+            },
+            "construccion": {
+                title: "Proyectos de Construcción",
+                cover: "img/construccion/construccion (1).jpeg", // ¡Elige tu mejor foto de portada!
+                images: [
+                    "img/construccion/construccion (1).jpeg",
+                    "img/construccion/construccion (2).jpeg",
+                    "img/construccion/construccion (3).jpeg",
+                    "img/construccion/construccion (4).jpeg",
+                    "img/construccion/construccion (5).jpeg",
+                    "img/construccion/construccion (6).jpeg",
+                ]
+            },
+            "ups": {
+                title: "Sistemas de UPS",
+                cover: "img/ups/ups (1).jpeg", // ¡Elige tu mejor foto de portada!
+                images: [
+                    "img/ups/ups (1).jpeg",
+                    "img/ups/ups (2).jpeg",
+                    "img/ups/ups (3).jpeg",
+                ]
+            },
+            "plantas": {
+                title: "Plantas de Emergencia",
+                cover: "img/emergencia/emergencia (1).jpeg", // ¡Elige tu mejor foto de portada!
+                images: [
+                    "img/emergencia/emergencia (1).jpeg",
+                    "img/emergencia/emergencia (2).jpeg",
+                    "img/emergencia/emergencia (3).jpeg",
+                    "img/emergencia/emergencia (4).jpeg",
+                    "img/emergencia/emergencia (5).jpeg",
+                    "img/emergencia/emergencia (6).jpeg",
+                    "img/emergencia/emergencia (7).jpeg",
+                    "img/emergencia/emergencia (8).jpeg",
+                    "img/emergencia/emergencia (9).jpeg",
+                    "img/emergencia/emergencia (10).jpeg",
+                ]
+            },
+            "mantenimiento": {
+                title: "Mantenimiento General",
+                cover: "img/general/general (3).jpeg", // ¡Elige tu mejor foto de portada!
+                images: [
+                    "img/general/general (1).jpeg",
+                    "img/general/general (2).jpeg",
+                    "img/general/general (3).jpeg",
+                ]
+            }
+        };
+
+        // ======================================================
+        // ===== LÓGICA DE LA PÁGINA (No tocar si no sabes) =====
+        // ======================================================
+
         document.addEventListener('DOMContentLoaded', () => {
             
             // --- Lógica del Botón de Tema (Light/Dark Mode) ---
@@ -467,7 +620,6 @@
             const moonIcon = document.getElementById('theme-icon-moon');
             const html = document.documentElement;
 
-            // Revisa el tema guardado al cargar la página
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 html.classList.add('dark');
                 moonIcon.classList.remove('hidden');
@@ -497,41 +649,118 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
+            // Cerrar menú móvil al hacer clic en un enlace
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
 
             // --- Lógica del Año del Footer ---
             document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-            // --- Lógica de la Galería Modal (Lightbox) ---
+            // --- Lógica de la Galería Modal (Lightbox) - ¡NUEVA! ---
+            
+            // Variables globales para el modal
+            let currentImages = [];
+            let currentIndex = 0;
+            
             const modal = document.getElementById('gallery-modal');
             const modalImg = document.getElementById('modal-img');
             const modalClose = document.getElementById('modal-close');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            const modalPrev = document.getElementById('modal-prev');
+            const modalNext = document.getElementById('modal-next');
+            const modalCounter = document.getElementById('modal-counter');
+            
+            // 1. Generar las tarjetas de categoría dinámicamente
+            const galleryContainer = document.getElementById('gallery-container');
+            if (galleryContainer) {
+                let animationDelay = 0;
+                Object.keys(projectGalleries).forEach(key => {
+                    const category = projectGalleries[key];
+                    // Solo genera la tarjeta si hay imágenes en la categoría
+                    if (category.images && category.images.length > 0) {
+                        const cardHTML = `
+                            <div class="gallery-trigger relative rounded-lg overflow-hidden shadow-lg cursor-pointer group animate-slide-in-up" 
+                                 data-category="${key}" 
+                                 style="animation-delay: ${animationDelay}ms;">
+                                
+                                <img src="${category.cover}" alt="${category.title}" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-1">${category.title}</h3>
+                                    <p class="text-white/80">Ver galería (${category.images.length} imágenes)</p>
+                                </div>
+                            </div>
+                        `;
+                        galleryContainer.innerHTML += cardHTML;
+                        animationDelay += 100; // Incrementa el delay para la siguiente tarjeta
+                    }
+                });
+            }
 
-            galleryItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const src = item.getAttribute('src');
-                    const alt = item.getAttribute('alt');
-                    modalImg.setAttribute('src', src);
-                    modalImg.setAttribute('alt', alt);
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            // 2. Función para actualizar la imagen y el contador del modal
+            function showImage(index) {
+                if (index >= 0 && index < currentImages.length) {
+                    currentIndex = index;
+                    modalImg.src = currentImages[currentIndex];
+                    modalCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+                }
+                // Ocultar/mostrar botones en los extremos
+                modalPrev.style.display = (currentIndex === 0) ? 'none' : 'flex';
+                modalNext.style.display = (currentIndex === currentImages.length - 1) ? 'none' : 'flex';
+            }
+
+            // 3. Abrir el modal
+            document.querySelectorAll('.gallery-trigger').forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const categoryKey = trigger.dataset.category;
+                    const gallery = projectGalleries[categoryKey];
+                    
+                    if (gallery && gallery.images.length > 0) {
+                        currentImages = gallery.images;
+                        showImage(0); // Mostrar la primera imagen
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                        document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+                    }
                 });
             });
 
+            // 4. Cerrar el modal
             const closeModal = () => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 document.body.style.overflow = 'auto'; // Restaurar scroll
             };
-
             modalClose.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                // Cerrar si se hace clic fuera de la imagen
-                if (e.target === modal) {
-                    closeModal();
+                if (e.target === modal) closeModal(); // Cerrar si se hace clic en el fondo
+            });
+
+            // 5. Navegación del modal
+            modalPrev.addEventListener('click', () => {
+                showImage(currentIndex - 1);
+            });
+            modalNext.addEventListener('click', () => {
+                showImage(currentIndex + 1);
+            });
+
+            // 6. Navegación con teclas de flecha
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('hidden')) { // Si el modal está abierto
+                    if (e.key === 'ArrowRight') {
+                        showImage(currentIndex + 1);
+                    } else if (e.key === 'ArrowLeft') {
+                        showImage(currentIndex - 1);
+                    } else if (e.key === 'Escape') {
+                        closeModal();
+                    }
                 }
             });
+
         });
     </script>
 </body>
