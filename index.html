@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es" class=""> <!-- La clase 'dark' se añadirá aquí con JS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Integrales RL | Soluciones Eléctricas y Construcción</title>
+    <meta name="description" content="Expertos en instalaciones eléctricas, construcción ligera, UPS, plantas de emergencia y mantenimiento integral.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.js"></script>
+
+    <!-- Estilos personalizados y configuración de Tailwind -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Configuración de tema oscuro y colores */
+        .dark .dark\:bg-gray-900 { background-color: #111827; }
+        .dark .dark\:bg-gray-800 { background-color: #1F2937; }
+        .dark .dark\:text-gray-100 { color: #F3F4F6; }
+        .dark .dark\:text-gray-300 { color: #D1D5DB; }
+        .dark .dark\:border-gray-700 { border-color: #374151; }
+        .dark .dark\:hover\:bg-gray-700:hover { background-color: #374151; }
+        .dark .dark\:focus\:ring-gray-700:focus { box-shadow: 0 0 0 4px #374151; }
+        
+        /* Animaciones sutiles */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        .slide-in-up {
+            animation: slideInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Estilos para el Parallax (simple) */
+        .parallax-bg {
+             /* Placeholder para fondo parallax */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .dark .parallax-bg {
+             /* Placeholder oscuro */
+        }
+        
+        /* Ocultar scrollbars en la galería */
+        .gallery-scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .gallery-scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Evitar comportamiento problemático de background-attachment: fixed en móviles */
+        @media (max-width: 768px) {
+            .parallax-bg { background-attachment: scroll; }
+        }
+    </style>
+    
+    <script>
+        // Configuración de Tailwind para modo oscuro y tema
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#2563EB', // Azul principal
+                            light: '#60A5FA',
+                            dark: '#1E40AF',
+                        },
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-in-up': 'slideInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    }
+                },
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- ===== Header / Navegación ===== -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <!-- Usamos el logo subido. NOTA: ¡Un PNG transparente sería mejor! -->
+                <img src="https://i.imgur.com/8xL5TFK.jpg" alt="Logo Servicios Integrales RL" class="h-10 w-10 rounded-full object-cover">
+                <span class="font-bold text-xl text-gray-900 dark:text-white"> <span class="text-brand-dark dark:text-brand-light">RL</span></span>
+            </a>
+            
+            <!-- Links de Navegación (Móvil Oculto) -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#servicios" class="text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT dark:hover:text-brand-light transition-colors">Servicios</a>
+                <a href="#quienes-somos" class="text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT dark:hover:text-brand-light transition-colors">Quiénes Somos</a>
+                <a href="#proyectos" class="text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT dark:hover:text-brand-light transition-colors">Proyectos</a>
+                <a href="#contacto" class="text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT dark:hover:text-brand-light transition-colors">Contacto</a>
+            </div>
+            
+            <!-- Botón de Tema y Menú Móvil -->
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT dark:hover:text-brand-light focus:outline-none">
+                    <!-- Iconos se intercambiarán con JS -->
+                    <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.7.7M4.04 19.96l-.7.7M21 12h-1M4 12H3m15.66 8.66l-.7-.7M4.04 4.04l-.7-.7M12 19a7 7 0 100-14 7 7 0 000 14z"></path></svg>
+                    <svg id="theme-icon-moon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                 <!-- Menú Móvil (Hamburguesa) - Lógica no implementada para brevedad, se muestra en desktop -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Menú Móvil (Contenido) - Se mostraría al hacer clic en el botón -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
+            <a href="#servicios" class="block text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT">Servicios</a>
+            <a href="#quienes-somos" class="block text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT">Quiénes Somos</a>
+            <a href="#proyectos" class="block text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT">Proyectos</a>
+            <a href="#contacto" class="block text-gray-600 dark:text-gray-300 hover:text-brand-DEFAULT">Contacto</a>
+        </div>
+    </header>
+
+    <!-- ===== Hero Section ===== -->
+    <section class="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center text-white overflow-hidden">
+        <!-- Fondo Parallax -->
+        <div class="parallax-bg absolute top-0 left-0 w-full h-full z-0"></div>
+        <!-- Overlay para legibilidad -->
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-20 animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4">
+                Soluciones Integrales <br> para tu Infraestructura
+            </h1>
+            <p class="text-lg md:text-2xl font-light text-gray-200 mb-8">
+                Expertos en instalaciones eléctricas, construcción y sistemas de respaldo.
+            </p>
+            <a href="#contacto" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105">
+                Cotiza tu Proyecto
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== Sección de Servicios (PDF) ===== -->
+    <section id="servicios" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 animate-slide-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Nuestros Servicios</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Soluciones profesionales para empresas, comercios y obra nueva.
+                </p>
+            </div>
+            
+            <!-- Grid de Tarjetas de Servicio (5) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                
+                <!-- Tarjeta 1: Instalaciones Eléctricas -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-in-up" style="animation-delay: 100ms;">
+                    <div class="mb-4 text-brand-DEFAULT dark:text-brand-light">
+                        <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Instalaciones Eléctricas</h3>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 text-sm">
+                        <li>Instalación y modernización de cableado</li>
+                        <li>Mantenimiento preventivo y correctivo</li>
+                        <li>Reparación de fallas eléctricas</li>
+                        <li>Instalación de tableros y canalizaciones</li>
+                        <li>Iluminación interior y exterior</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 2: Construcción -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-in-up" style="animation-delay: 200ms;">
+                    <div class="mb-4 text-brand-DEFAULT dark:text-brand-light">
+                        <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h6m-3-3v3m-3 3h.01M12 10h.01M15 10h.01M9 13h.01M12 13h.01M15 13h.01M9 16h.01M12 16h.01M15 16h.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Construcción</h3>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 text-sm">
+                        <li>Construcción de acuerdo a plan</li>
+                        <li>Remodelaciones de espacios</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 3: UPS -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-in-up" style="animation-delay: 300ms;">
+                    <div class="mb-4 text-brand-DEFAULT dark:text-brand-light">
+                        <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12 12 0 0012 21a12 12 0 008.618-15.016z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Sistemas de (UPS)</h3>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 text-sm">
+                        <li>Venta e instalación de UPS</li>
+                        <li>Mantenimiento preventivo y correctivo</li>
+                        <li>Diagnóstico y reemplazo de baterías</li>
+                        <li>Configuración y puesta en marcha</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 4: Plantas de Emergencia -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-in-up" style="animation-delay: 400ms;">
+                    <div class="mb-4 text-brand-DEFAULT dark:text-brand-light">
+                        <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m11-1H9V5h10v14H9V5zm0 0v0m6 0v0m-3 4.004v.01M12 11.004v.01m3 0v.01m-6 3.004v.01m3 0v.01m3 0v.01M12 17.004v.01m3 0v.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Plantas de Emergencia</h3>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 text-sm">
+                        <li>Venta de plantas de emergencia</li>
+                        <li>Mantenimiento preventivo y correctivo</li>
+                        <li>Diagnóstico y reemplazo de componentes</li>
+                        <li>Instalación y puesta en operación</li>
+                    </ul>
+                </div>
+                
+                <!-- Tarjeta 5: Mantenimiento General -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-in-up" style="animation-delay: 500ms;">
+                    <div class="mb-4 text-brand-DEFAULT dark:text-brand-light">
+                        <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Mantenimiento General</h3>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 text-sm">
+                        <li>Revisión y corrección de instalaciones</li>
+                        <li>Limpieza técnica y verificación</li>
+                        <li>Mantenimiento programado</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Sección Quiénes Somos (PDF) ===== -->
+    <section id="quienes-somos" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Columna de Texto -->
+                <div class="md:w-1/2 animate-slide-in-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Quiénes Somos</h2>
+                    <!-- Texto EXACTO del PDF -->
+                    <div class="space-y-4 text-gray-700 dark:text-gray-300 text-lg">
+                        <p>En Servicios Integrales RL somos una empresa dedicada a brindar soluciones profesionales en instalaciones eléctricas, construcción ligera, sistemas de energía ininterrumpida (UPS), plantas de emergencia y mantenimiento integral. Nuestro compromiso es ofrecer servicios seguros, eficientes y ejecutados con los más altos estándares de calidad.</p>
+                        <p>Contamos con un equipo técnico especializado y con amplia experiencia que garantiza la correcta ejecución de cada proyecto, desde pequeñas adecuaciones hasta instalaciones completas en hogares, negocios, oficinas y empresas.</p>
+                        <p>Nos enfocamos en proporcionar atención personalizada, diagnósticos confiables y soluciones a la medida de las necesidades de cada cliente, asegurando siempre:</p>
+                        <ul class="list-disc list-inside pl-4 space-y-2 py-2">
+                            <li>Seguridad en cada instalación</li>
+                            <li>Entregas puntuales</li>
+                            <li>Materiales y equipos de alta calidad</li>
+                            <li>Servicio profesional y honesto</li>
+                        </ul>
+                        <p>En Servicios Integrales RL, trabajamos para que tu infraestructura eléctrica, tus sistemas de respaldo y tus espacios remodelados funcionen correctamente y con la mayor durabilidad.</p>
+                    </div>
+                </div>
+                <!-- Columna de Imagen -->
+                <div class="md:w-1/2 animate-fade-in" style="animation-delay: 200ms;">
+                    <img src="https://placehold.co/600x500/1e3a8a/ffffff?text=Equipo+Profesional" alt="Equipo de Servicios Integrales RL trabajando" class="rounded-xl shadow-2xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Sección Proyectos Recientes (Galería) ===== -->
+    <section id="proyectos" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 animate-slide-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Proyectos Recientes</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Conoce la calidad de nuestro trabajo en nuestras principales áreas de servicio.
+                </p>
+            </div>
+            
+            <!-- Aquí van las 5 categorías -->
+            <!-- 1. Eléctrico -->
+            <div class="mb-12 animate-fade-in">
+                <!-- <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">1. Eléctrico</h3> -->
+                <div class="flex overflow-x-auto gap-6 gallery-scrollbar-hide pb-4">
+                    <!-- REEMPLAZA ESTAS IMÁGENES -->
+                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+1" alt="Proyecto Eléctrico 1" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+2" alt="Proyecto Eléctrico 2" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+3" alt="Proyecto Eléctrico 3" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+3" alt="Proyecto Eléctrico 3" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Proyecto+Eléctrico+3" alt="Proyecto Eléctrico 3" class="gallery-item w-4/5 md:w-1/3 flex-shrink-0 rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
+                </div>
+            </div>
+
+            
+
+        </div>
+    </section>
+    
+    <!-- ===== Sección Cobertura ===== -->
+    <section id="cobertura" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-6 text-center animate-slide-in-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Nuestra Cobertura</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+                Tenemos presencia en las principales ciudades del país para atender tus proyectos donde nos necesites.
+            </p>
+            <!-- Lista de ciudades (del input del usuario) -->
+            <div class="flex flex-wrap justify-center gap-4 text-gray-700 dark:text-gray-200 font-medium">
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">CDMX y Área Metro</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Guadalajara</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Puebla</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Veracruz</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Chihuahua</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Culiacán</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Monterrey</span>
+                <span class="py-2 px-5 bg-white dark:bg-gray-800 rounded-full shadow-sm">Querétaro</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Sección Contacto (Formulario y Datos) ===== -->
+    <section id="contacto" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                
+                <!-- Columna Formulario (Inspirado en cuentanostuproyecto.jpeg) -->
+                <div class="lg:w-1/2 bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg animate-slide-in-up">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Cuéntanos tu proyecto</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Recibe una cotización sin costo.</p>
+                    
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Tu nombre completo">
+                            </div>
+                            <div>
+                                <label for="telefono" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Tu número de teléfono">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="correo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Correo</label>
+                            <input type="email" id="correo" name="correo" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="tu@correo.com">
+                        </div>
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" class="w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-brand-DEFAULT focus:border-brand-DEFAULT" placeholder="Danos más detalles de tu proyecto..."></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-brand-DEFAULT hover:bg-brand-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+                                Enviar mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Columna Datos de Contacto (Inspirado en datosdecontacto.jpeg) -->
+                <div class="lg:w-1/2 animate-slide-in-up" style="animation-delay: 200ms;">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Datos de contacto</h3>
+                    <div class="space-y-6 text-lg">
+                        
+                        <div class="flex items-start gap-4">
+                            <!-- Icono -->
+                            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-brand-light/20 text-brand-DEFAULT dark:text-brand-light rounded-lg">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.3 1.533a11.037 11.037 0 005.277 5.277l1.533-2.3a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block text-sm text-gray-500 dark:text-gray-400">Teléfono</span>
+                                <a href="tel:5544616393" class="text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">55 4461 6393</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <!-- Icono -->
+                            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-100 text-green-600 dark:text-green-400 rounded-lg">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.38.41.66v1.38c0 .28-.16.53-.41.66l-3.2 1.68c-.09.05-.18.07-.28.07c-.1 0-.19-.02-.28-.07l-3.2-1.68c-.25-.13-.41-.38-.41-.66v-1.38c0-.28.16-.53.41-.66l3.2-1.68c.18-.1.4-.1.58 0l3.19 1.68zm-3.2 2.8c.1 0 .19-.02.28-.07l1.42-.75l-1.7-1.02l-1.7 1.02l1.42.75c.09.05.18.07.28.07zM12 2C6.48 2 2 6.48 2 12c0 1.67.42 3.24 1.16 4.6l-1.03 3.55c-.14.48.3.92.78.78l3.55-1.03A9.92 9.92 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.53 0-2.96-.38-4.2-1.05c-.18-.1-.38-.13-.57-.08l-2.61.76l.76-2.61c.05-.19.02-.39-.08-.57A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8z"></svg>
+                            </div>
+                            <div>
+                                <span class="block text-sm text-gray-500 dark:text-gray-400">WhatsApp</span>
+                                <a href="https://wa.me/5215544616393?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank" class="text-gray-900 dark:text-white font-semibold hover:text-green-600 dark:hover:text-green-400">Enviar mensaje</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <!-- Icono -->
+                            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-brand-light/20 text-brand-DEFAULT dark:text-brand-light rounded-lg">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block text-sm text-gray-500 dark:text-gray-400">Correo</span>
+                                <a href="mailto:contacto@serviciosintegralesrl.com" class="text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">contacto</a>
+                                <a href="mailto:proyectos@serviciosintegralesrl.com" class="block text-sm text-gray-900 dark:text-white font-semibold hover:text-brand-DEFAULT dark:hover:text-brand-light">proyectos</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <!-- Icono -->
+                            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-brand-light/20 text-brand-DEFAULT dark:text-brand-light rounded-lg">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block text-sm text-gray-500 dark:text-gray-400">Horario</span>
+                                <p class="text-gray-900 dark:text-white font-semibold">Lun-Vie 9:00–18:00</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-900 dark:bg-black text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://i.imgur.com/8xL5TFK.jpg" alt="Logo Servicios Integrales RL" class="h-16 w-16 rounded-full object-cover mx-auto mb-4">
+            <p class="text-2xl font-bold text-white mb-4">Servicios Integrales RL</p>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#servicios" class="hover:text-brand-light transition-colors">Servicios</a>
+                <a href="#quienes-somos" class="hover:text-brand-light transition-colors">Quiénes Somos</a>
+                <a href="#proyectos" class="hover:text-brand-light transition-colors">Proyectos</a>
+                <a href="#contacto" class="hover:text-brand-light transition-colors">Contacto</a>
+            </div>
+            <p class="text-gray-400">&copy; <span id="footer-year"></span> Servicios Integrales RL. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- ===== Botón Flotante de WhatsApp ===== -->
+    <a href="https://wa.me/5215544616393?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios."
+       target="_blank"
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-40 transition-all duration-300 transform hover:scale-110">
+        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.38.41.66v1.38c0 .28-.16.53-.41.66l-3.2 1.68c-.09.05-.18.07-.28.07c-.1 0-.19-.02-.28-.07l-3.2-1.68c-.25-.13-.41-.38-.41-.66v-1.38c0-.28.16-.53.41-.66l3.2-1.68c.18-.1.4-.1.58 0l3.19 1.68zm-3.2 2.8c.1 0 .19-.02.28-.07l1.42-.75l-1.7-1.02l-1.7 1.02l1.42.75c.09.05.18.07.28.07zM12 2C6.48 2 2 6.48 2 12c0 1.67.42 3.24 1.16 4.6l-1.03 3.55c-.14.48.3.92.78.78l3.55-1.03A9.92 9.92 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.53 0-2.96-.38-4.2-1.05c-.18-.1-.38-.13-.57-.08l-2.61.76l.76-2.61c.05-.19.02-.39-.08-.57A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8z"></path></svg>
+    </a>
+
+    <!-- ===== Modal para Galería (Lightbox) ===== -->
+    <div id="gallery-modal" class="fixed inset-0 bg-black bg-opacity-80 z-[100] flex items-center justify-center p-4 hidden transition-opacity duration-300">
+        <div class="relative max-w-3xl max-h-[90vh]">
+            <img id="modal-img" src="" alt="Proyecto ampliado" class="w-auto h-auto max-w-full max-h-[90vh] rounded-lg shadow-2xl">
+            <button id="modal-close" class="absolute -top-4 -right-4 md:top-2 md:right-2 w-10 h-10 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full flex items-center justify-center text-2xl font-bold focus:outline-none">&times;</button>
+        </div>
+    </div>
+
+    <!-- ===== Scripts ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Lógica del Botón de Tema (Light/Dark Mode) ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = document.getElementById('theme-icon-sun');
+            const moonIcon = document.getElementById('theme-icon-moon');
+            const html = document.documentElement;
+
+            // Revisa el tema guardado al cargar la página
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+                moonIcon.classList.remove('hidden');
+            } else {
+                html.classList.remove('dark');
+                sunIcon.classList.remove('hidden');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    localStorage.theme = 'light';
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                } else {
+                    html.classList.add('dark');
+                    localStorage.theme = 'dark';
+                    moonIcon.classList.remove('hidden');
+                    sunIcon.classList.add('hidden');
+                }
+            });
+
+            // --- Lógica del Menú Móvil ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Lógica del Año del Footer ---
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+            // --- Lógica de la Galería Modal (Lightbox) ---
+            const modal = document.getElementById('gallery-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalClose = document.getElementById('modal-close');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const src = item.getAttribute('src');
+                    const alt = item.getAttribute('alt');
+                    modalImg.setAttribute('src', src);
+                    modalImg.setAttribute('alt', alt);
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                // Cerrar si se hace clic fuera de la imagen
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
